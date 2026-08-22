@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join LockAura</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 420px;
+            background: white;
+            padding: 30px 22px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .logo {
+            font-size: 55px;
+        }
+
+        h1 {
+            margin: 10px 0;
+            font-size: 30px;
+        }
+
+        p {
+            color: #555;
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        .ref {
+            background: #f0f2f5;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            background: #111;
+            color: white;
+            cursor: pointer;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #777;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="logo">🔐</div>
+
+    <h1>Join LockAura</h1>
+
+    <p>
+        You've been invited to join LockAura.
+    </p>
+
+    <div class="ref" id="referral">
+        Loading referral ID...
+    </div>
+
+    <button onclick="continueToLockAura()">
+        📲 GET LOCKAURA
+    </button>
+
+    <p class="note">
+        Your referral will be connected when you complete the required LockAura process.
+    </p>
+
+</div>
+
+<script>
+
+    const params = new URLSearchParams(window.location.search);
+    const referralId = params.get("ref");
+
+    if (referralId) {
+        document.getElementById("referral").textContent =
+            "Referral ID: " + referralId;
+
+        localStorage.setItem("lockAuraReferral", referralId);
+    } else {
+        document.getElementById("referral").textContent =
+            "Referral ID not found";
+    }
+
+    function continueToLockAura() {
+
+        const ref = localStorage.getItem("lockAuraReferral");
+
+        if (ref) {
+            alert(
+                "Your LockAura referral ID is: " + ref +
+                "\n\nPlease continue to LockAura."
+            );
+        } else {
+            alert("Referral ID not found.");
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
